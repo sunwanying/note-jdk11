@@ -61,7 +61,7 @@
             <if test="content != null">
                 content = #{content},
             </if>
-            <if test="click_number != null and click_number != ''">
+            <if test="clickNumber != null and clickNumber != ''">
                 click_number = #{clickNumber},
             </if>
             <if test="type != null and type != ''">

@@ -26,3 +26,9 @@ spring Boot 开始一个 blog 项目
     业务具体实现
 ### utils
     工具类
+    
+## 编译
+
+`./gradlew build --refresh-dependencies -x test`
+
+`nohup java -jar $JOB_NAME.jar --spring.profiles.active=prod &`

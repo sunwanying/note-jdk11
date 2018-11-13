@@ -195,7 +195,7 @@ public class UserController {
             }
         }
 
-        if (result.getCode() > 0) {
+        if (result.getCode() != 200) {
             model.addAttribute("msg", result.getMessage());
             return "user/add";
         } else {

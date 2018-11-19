@@ -13,7 +13,7 @@
             <div class="form-group">
                 <input th:value="${note.id}" id="id" name="id" hidden>
                 <label for="title">笔记标题</label>
-                <input th:value="${note.title}" class="form-control" id="title" name="title" placeholder="笔记标题">
+                <input th:value="${note.title}" class="form-control" id="title" name="title" placeholder="笔记标题" required>
             </div>
             <div class="form-group">
                 <label for="content">笔记内容</label>
@@ -27,11 +27,12 @@
                 </label>
             </div>
             <button type="submit" class="btn btn-primary">确认</button>
+            <!-- 预览的 js 在下面的 note.js 中-->
+            <a href="#" id="previewButton" class="btn btn-primary">预览</a>
+            <a th:href="@{/note/index}" class="btn btn-success">返回列表</a>
         </form>
         <br/>
-        <!-- 预览的 js 在下面的 note.js 中-->
-        <a href="#" id="previewButton" class="btn btn-primary">预览<a/>
-        <a th:href="@{/note/index}" class="btn btn-success">返回列表<a/>
+
     </div>
     <div class="col-md-6" id="preview"></div>
 </div>

@@ -1,0 +1,6 @@
+/*预览模式加表格边框*/
+#preview table, th, td {
+    border: 1px solid green;
+    padding-left: 10px;
+    padding-right: 10px;
+}

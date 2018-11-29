@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         // 允许查看公开的笔记
                         "/note/view/**",
                         // 静态资源过滤
-                        "/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
+                        "/static/css/**", "/static/js/**", "/static/images/**", "/favicon.ico").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 非 login 请求，先走 JWT token 过滤器，校验 token 的有效性

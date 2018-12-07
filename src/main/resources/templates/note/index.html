@@ -7,29 +7,44 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h2><a class="btn btn-primary" href="/note/add">写笔记</a></h2>
-    <table class="table table-striped table-bordered content">
-        <thead>
-        <tr>
-            <th>笔记标题</th>
-            <th>创建时间</th>
-            <th>编辑</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="note:${noteList}">
-            <td th:text="${note.id}" hidden>ID：id</td>
-            <td>
-                <a th:href="@{'/note/view/'+${note.id}}" th:text="${note.title}">笔记标题</a>
-            </td>
-            <td th:text="${#temporals.format(note.createTime,'yyyy年MM月dd日')}">2018-01-01 00:00:00</td>
-            <td>
-                <!--<a th:href="@{'/note/view/' + ${note.id}}">查看</a> |-->
-                <a th:href="@{'/note/edit/' + ${note.id}}">更新笔记</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
+        <div class="col-md-1">
+            <a class="btn btn-primary" href="/note/add">写笔记</a>
+        </div>
+        <form class="form" th:action="@{/note/findByName}" method="get">
+            <div class="col-md-1 pull-right">
+                <button type="submit" class="btn btn-success">确定</button>
+            </div>
+            <div class="col-md-2 pull-right">
+                <input th:value="${keyword}" class="form-control" type="text" id="keyword" name="keyword" title="笔记标题搜索"
+                       placeholder="笔记标题搜索"/>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered content">
+            <thead>
+            <tr>
+                <th>笔记标题</th>
+                <th>创建时间</th>
+                <th>编辑</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="note:${noteList}">
+                <td th:text="${note.id}" hidden>ID：id</td>
+                <td>
+                    <a th:href="@{'/note/view/'+${note.id}}" th:text="${note.title}">笔记标题</a>
+                </td>
+                <td th:text="${#temporals.format(note.createTime,'yyyy年MM月dd日')}">2018-01-01 00:00:00</td>
+                <td>
+                    <!--<a th:href="@{'/note/view/' + ${note.id}}">查看</a> |-->
+                    <a th:href="@{'/note/edit/' + ${note.id}}">更新笔记</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div layout:fragment="customScript">

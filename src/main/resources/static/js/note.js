@@ -8,15 +8,12 @@ $(function () {
     $("#previewButton").click(function () {
         var content = $("#content").val();
 
+        // markdown 转 html
         var markdown_content = marked(content);
-        // var markdown_content = gfmMarkdown(content);
-        //
-        // if (markdown_content === "error") {
-        //     markdown_content = markdown.toHTML(content);
-        // }
 
         $("#preview").html(markdown_content);
 
+        // 高亮
         $('pre code').each(function (i, block) {
             hljs.highlightBlock(block);
         });

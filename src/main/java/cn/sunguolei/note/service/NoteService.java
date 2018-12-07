@@ -10,6 +10,8 @@ public interface NoteService {
 
     List<Note> index(int userId);
 
+    List<Note> findByName(int userId, String keyword);
+
     PageInfo<Note> homeNoteList(int pageNum, int pageSize);
 
     int create(Note note);

@@ -49,4 +49,9 @@ public class NoteServiceImpl implements NoteService {
     public int update(Note note) {
         return noteMapper.update(note);
     }
+
+    @Override
+    public List<Note> findByName(int userId, String keyword) {
+        return noteMapper.findByName(userId, keyword);
+    }
 }

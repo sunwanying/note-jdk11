@@ -14,6 +14,22 @@ spring:
   messages:
     basename: message/messages
     encoding: utf-8
+  resources:
+    # 为资源添加资源映射
+    add-mappings: true
+    cache:
+      # 缓存3600秒
+      period: 3600s
+    chain:
+      # 允许资源缓存
+      cache: true
+      # 开启资源缓存
+      enabled: true
+      html-application-cache: true
+      # 开启静态资源压缩
+      compressed: true
+    # 标记静态资源位置
+    static-locations: /resources/static
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

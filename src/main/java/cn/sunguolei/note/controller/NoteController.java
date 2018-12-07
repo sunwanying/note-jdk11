@@ -207,4 +207,14 @@ public class NoteController {
         // 返回笔记列表页
         return "redirect:/note/view/" + note.getId();
     }
+
+    @GetMapping("/findByName")
+    public String findByName(String keyword, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var noteList = noteService.findByName(user.getId(), keyword);
+        // 将笔记列表存放到 model 中，返回给前端页面
+        model.addAttribute("noteList", noteList);
+        model.addAttribute("keyword", keyword);
+        return "note/index";
+    }
 }

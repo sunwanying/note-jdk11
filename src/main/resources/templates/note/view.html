@@ -25,17 +25,12 @@
     <script src="/static/js/ext/marked.js"></script>
     <script th:inline="javascript">
         var content = [[${note.content}]];
+        // markdown 转 html
         var markdown_content = marked(content);
-        <!-- 使用 gfm markdown 进行文章渲染 -->
-        // var markdown_content = gfmMarkdown(content);
-        //
-        // // 再次用本地的 markdown 解析器
-        // if (markdown_content === "error") {
-        //     markdown_content = markdown.toHTML(content);
-        // }
 
         $("#article").html(markdown_content);
 
+        // 高亮
         $('pre code').each(function (i, block) {
             hljs.highlightBlock(block);
         });

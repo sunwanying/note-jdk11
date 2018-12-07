@@ -18,4 +18,6 @@ public interface NoteMapper {
     Note findNoteById(int id);
 
     int update(Note note);
+
+    List<Note> findByName(int userId, String keyword);
 }

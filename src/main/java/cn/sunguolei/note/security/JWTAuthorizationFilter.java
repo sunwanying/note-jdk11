@@ -1,5 +1,7 @@
 package cn.sunguolei.note.security;
 
+import cn.sunguolei.note.entity.User;
+import cn.sunguolei.note.service.UserService;
 import cn.sunguolei.note.utils.UserUtil;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,8 +21,12 @@ import static cn.sunguolei.note.security.SecurityConstants.JWT_KEY;
 
 // 授权过滤
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-    public JWTAuthorizationFilter(AuthenticationManager authManager) {
+
+    private UserService userService;
+
+    public JWTAuthorizationFilter(AuthenticationManager authManager, UserService userService) {
         super(authManager);
+        this.userService = userService;
     }
 
     @Override
@@ -57,8 +63,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             // 解出 token，获取 token 中的 name，返回一个创建的合法 spring 用户，第三个参数 new ArrayList 是用来设置权限的
+            // 查出用户对象，设置到 authentication 对象中构建 Principal
             if (username != null) {
-                return new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+                User myUser = userService.findUserByUsername(username);
+                return new UsernamePasswordAuthenticationToken(myUser, null, new ArrayList<>());
             }
             return null;
         }

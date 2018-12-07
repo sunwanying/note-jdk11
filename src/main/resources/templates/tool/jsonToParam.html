@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        .trStyle1 {
+            background-color: #f7ecb5;
+        }
+
+        .trStyle2 {
+            background-color: #c7ddef;
+        }
+
+        .trStyle3 {
+            background-color: #c9e2b3;
+        }
+
+        .trStyle4 {
+            background-color: #c7ddef;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content" class="row">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">json 转 paramList</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group" style="padding-bottom: 5px">
+                    <label class="col-md-1 control-label">json 转换</label>
+
+                    <div class="col-md-10">
+                        <textarea name="paramJson" id="paramJson" class="form-control" title='请输入json'
+                                  rows="6" oninput="this.style.height = this.scrollHeight + 'px';"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" id="jsonToParamButton" class="col-md-1 col-md-offset-4 btn btn-primary">
+                        转换
+                    </button>
+                    <button type="button" id="paramExportButton" class="col-md-1 col-md-offset-1 btn btn-primary">
+                        转换
+                    </button>
+                </div>
+                <div class="form-group" style="padding-bottom: 5px" id="paramListPreview">
+                        <label class="col-md-1 control-label">转换结果</label>
+
+                        <div class="col-md-10">
+                        <textarea name="paramResult" id="paramResult" class="form-control" title='转换结果'
+                                  rows="6" oninput="this.style.height = this.scrollHeight + 'px';" readonly></textarea>
+                        </div>
+                </div>
+
+                <div id="inParamContainer" class="form-group" style="padding-bottom: 5px">
+                    <label class="col-md-1 control-label">参数列表</label>
+                    <input id="inParamList" name="inParamList" hidden title=""/>
+
+                    <div class="col-md-10">
+                        <table id="inParamTable" class="table table-bordered content">
+                            <thead>
+                            <tr>
+                                <th>字段名称</th>
+                                <th>字段类型</th>
+                                <th>字段值</th>
+                                <th>字段描述</th>
+                                <th>是否必填项</th>
+                                <th hidden>字段层级</th>
+                                <th hidden>字段id</th>
+                                <th hidden>字段父id</th>
+                            </tr>
+                            </thead>
+                            <tbody id="inParamTr">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="customScript">
+    <script type="text/javascript" src="/static/js/tool.js"></script>
+</div>
+</body>
+</html>

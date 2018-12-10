@@ -186,10 +186,10 @@ public class NoteController {
     @PostMapping("/update")
     public String update(Note note) {
 
-        String username = (String) SecurityContextHolder.getContext()
+        User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
-        User user = userService.findUserByUsername(username);
+//        User user = userService.findUserByUsername(username);
         // 当前登录的用户 ID
         int userId = user.getId();
         // 笔记中记录的创建者的 ID

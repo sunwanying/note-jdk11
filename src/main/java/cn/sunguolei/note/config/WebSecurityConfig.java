@@ -33,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 除了 login 其它接口都需要验证
                 .antMatchers("/", "/toLogin", "/login",
                         "/user/add", "/user/create", "/user/activeUser",
-                        // 允许查看公开的笔记
-                        "/note/view/**",
+                        // 允许查看公开的笔记，公开的工具
+                        "/note/view/**", "/tool/jsonToParam",
                         // 静态资源过滤
                         "/static/css/**", "/static/js/**", "/static/images/**", "/favicon.ico").permitAll()
                 .anyRequest().authenticated()

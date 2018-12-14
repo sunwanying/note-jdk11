@@ -124,10 +124,9 @@ public class NoteController {
             Note note = noteTemp.get();
             // 如果笔记是隐藏的
             if (note.getType() == 1) {
-                String username = (String) SecurityContextHolder.getContext()
+                User user = (User) SecurityContextHolder.getContext()
                         .getAuthentication()
                         .getPrincipal();
-                User user = userService.findUserByUsername(username);
                 if (user == null) {
                     return "redirect:/toLogin";
                 } else {

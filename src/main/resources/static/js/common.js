@@ -45,7 +45,10 @@ $(function () {
                     $("#username").text(jsonObj.username);
                     $("#login").hide();
                     $("#userDomain").show();
-                    window.location.href = "/";
+                    if (document.referrer.indexOf("toLogin") > 0) {
+                        window.location.href = "/";
+                    }
+                    window.location.href = document.referrer;
                     //     $("#login").hide();
                     //     $("#userDomain").show();
                     // } else {
@@ -54,10 +57,8 @@ $(function () {
                     // }
                 }
             },
-            error: function (response) {
-                // 获取用户
-                var jsonStr = JSON.stringify(response);
-                var jsonObj = JSON.parse(jsonStr);
+            // 非 200 - 400 的错误码都为 error
+            error: function () {
                 alert("用户名或密码错误，请确认");
             }
         });

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -45,9 +46,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                             user.getPassword(),
                             new ArrayList<>())
             );
+        } catch (BadCredentialsException e) {
+            e.printStackTrace();
+            try {
+                res.setCharacterEncoding("UTF-8");
+                res.setContentType("application/json;charset=UTF-8");
+                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                res.getWriter().print("error");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     // 用户验证成功后

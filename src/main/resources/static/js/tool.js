@@ -99,19 +99,21 @@ function jsonToParam(jsonString, tBodyId) {
         id++;
         console.log(val.toString() + "_" + id);
 
+        var parentIdTemp = paramObject.tempId;
+
         if (val instanceof Array) {
             paramObject.fieldType = "4";
             paramArray.push(paramObject);
 
             for (var i = 0, n = val.length; i < n; i++) {
                 if (i in val) {
-                    logObject(val[i], grade + 1, i, "Array", id);
+                    logObject(val[i], grade + 1, i, "Array", parentIdTemp);
                 }
             }
         } else if (typeof val === "object") {
             paramObject.fieldType = "3";
             var gradeTemp = grade + 1;
-            var parentIdTemp = id;
+
             // 如果父类型为 Array，当前类型为 Object 的不加入到数组中
             if (parentType !== "Array") {
                 paramArray.push(paramObject);

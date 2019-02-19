@@ -9,7 +9,10 @@ $(function () {
         var content = $("#content").val();
 
         // markdown 转 html
-        var markdown_content = marked(content);
+        var markdown_content = marked(content, {
+            gfm: true,
+            breaks: true
+        });
 
         $("#preview").html(markdown_content);
 

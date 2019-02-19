@@ -26,7 +26,10 @@
     <script th:inline="javascript">
         var content = [[${note.content}]];
         // markdown 转 html
-        var markdown_content = marked(content);
+        var markdown_content = marked(content, {
+            gfm: true,
+            breaks: true
+        });
 
         $("#article").html(markdown_content);
 
